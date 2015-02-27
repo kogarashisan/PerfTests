@@ -94,7 +94,7 @@ This is accomplished by appending unique variable declaration to the beginning o
 - Create polymorphism: each individual test creates instances of <i>two different</i> child classes, that call same 
 <i>overridden</i> parent's method. This shows issues with parent's method becoming polymorphic.
 
-P.S.
+##P.S.
 
 To learn more about ClassManager, please visit it's official repository:
 https://github.com/kogarashisan/ClassManager
