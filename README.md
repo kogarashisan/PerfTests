@@ -9,9 +9,8 @@ other tests (from the words of DotNetWise author).
 
 ##Where to see the results?
 
-Object construction: 
-
-Overridden method calls: 
+- Overridden method calls: http://jsperf.com/js-inheritance-method-calls/2
+- Object construction: http://jsperf.com/js-inheritance-object-construction
 
 ##Comparison to other test suites
 
@@ -29,8 +28,11 @@ What else to watch for:
 If the second time some test runs slower, and result is stable - then it's wrong.
 - if result changes depending on order, in which you run tests - they are wrong,
 cause they affect each other.
-- benchmark shows deviation from normal result. If this number is too high, like "+/- 30.25%" -
-then test is wrong (probably, cause some method gets constantly recompiled).
+- benchmark shows deviation from normal result. If this number is too high, like "+/- 27.98%" -
+this may also be a sign, that the test is wrong. 
+
+Note: although the "Native" example from this test suite has high deviation in Chrome, 
+it's considered right by the author.
 
 ##Another bad example: how not to write tests
 
@@ -91,3 +93,8 @@ This is accomplished by appending unique variable declaration to the beginning o
 
 - Create polymorphism: each individual test creates instances of <i>two different</i> child classes, that call same 
 <i>overridden</i> parent's method. This shows issues with parent's method becoming polymorphic.
+
+P.S.
+
+To learn more about ClassManager, please visit it's official repository:
+https://github.com/kogarashisan/ClassManager
