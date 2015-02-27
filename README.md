@@ -31,8 +31,10 @@ cause they affect each other.
 - benchmark shows deviation from normal result. If this number is too high, like "+/- 27.98%" -
 this may also be a sign, that the test is wrong. 
 
-Note: although the "Native" example from this test suite has high deviation in Chrome, 
-it's considered right by the author.
+Notes: 
+- although the "Native" example from this test suite has high deviation in Chrome, it's considered right by the author.
+- these tests construct a pair of objects before each loop with method calls.
+This introduces a small error into the test results (less than 1%), which can be neglected.
 
 ##Another bad example: how not to write tests
 
