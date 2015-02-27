@@ -69,21 +69,25 @@ For example: browser vendors can implement different kinds of optimizations, whi
 
 To ensure accuracy, these tests use the following techniques:
 
-1. Tested method's body should be large enough, so that it's not inlined. This is accomplished by the following code:
+- Tested method's body should be large enough, so that it's not inlined. This is accomplished by the following code:
 ```
 if (prevent_inline) {
 	// lots of dummy code, which will never be executed
 }
 ```
-2. `counter` must not overflow. This is accomplished by cycling it in a small range:
+
+- `counter` must not overflow. This is accomplished by cycling it in a small range:
 ```
 if (this.counter > 99) this.counter = this.counter / 2;
 ```
 When `counter` hits 100, it's set to 50.
-3. Tested method's body should be complex enough, so that result is not predicted by optimizer.
+
+- Tested method's body should be complex enough, so that result is not predicted by optimizer.
 This is not guaranteed :)
-4. Cache busting: all methods must have unique source code, so they are not reused by V8.
+
+- Cache busting: all methods must have unique source code, so they are not reused by V8.
 This is accomplished by appending unique variable declaration to the beginning of each method in the test suite
 (like `var cache_buster_0012;`).
-5. Create polymorphism: each individual test creates instances of <i>two different</i> child classes, that call same 
+
+- Create polymorphism: each individual test creates instances of <i>two different</i> child classes, that call same 
 <i>overridden</i> parent's method. This shows issues with parent's method becoming polymorphic.
