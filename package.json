@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "fast-class": "^1.729.121805",
+    "fiber": "^1.0.4",
+    "lava": "^0.13.6",
+    "lava-class-manager": "^1.1.0"
+  }
+}
