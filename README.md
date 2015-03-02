@@ -57,19 +57,22 @@ for (var i = 0; i < 10000; i++) {
 This test is wrong in many ways:
 - first, `method` most likely will be inlined. In micro-benchmarks it may lead to incorrect results, 
 especially when you compare it to other methods, which were not inlined.
-- next, at some moment `counter` will overflow. When this happens, it's internal type will be changed from integer to float.
-Floats are boxed like objects, so they are much slower than integers. 
-- counter overflow will also create polymorphism in `method` (if it wasn't inlined).
+- next, at some moment `counter` will overflow. When this happens, it's internal type will be changed from integer to double.
+Doubles are boxed like objects, so they are much slower than integers. 
+- promotion to double will also make `method` a little heavier (if it wasn't inlined).
 
 To create the right tests you should also understand how your benchmark suite works, 
 what is polymorphism in property accessors, scope internals and many other things.
 If you want to learn more, then I recommend you this site for reference: [mrale.ph](http://mrale.ph/) 
 (it's not mine, but currently it's one of the best sources about JavaScript engine internals).
 
+<i>I do not claim absolute correctness of these tests, they are just more relevant than average.</i> 
+
 ##Techniques used
 
 These tests try to provide most accurate results, although it's not guaranteed that they are 100% correct.
 For example: browser vendors can implement different kinds of optimizations, which will lead to wrong results.
+If I find any mistakes or room for improvement - I will do my best to maintain their quality.
 
 To ensure accuracy, these tests use the following techniques:
 
