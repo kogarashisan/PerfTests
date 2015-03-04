@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.1.0",
+  "version": "2.0.0",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "fast-class": "^1.729.121805",

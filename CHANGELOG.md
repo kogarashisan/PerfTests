@@ -1,9 +1,11 @@
 
 #Changelog
 
-##1.1.0
+##2.0.0
 
 - Improved testing algorithm
+- Corrected README
+- Added a couple of new models
 
 ##1.0.1
 
