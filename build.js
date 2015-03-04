@@ -62,7 +62,8 @@ var result = [
 	readFile("src/top.js"),
 	readFile("src/TypeScript/result.js"),
 	//readFile("src/Prototype/main.js"), // it's too slow, like 1% of native. No reason to include it with the others.
-	readFile("src/Native/main.js"),
+	readFile("src/Native/unwrapped.js"),
+	readFile("src/Native/wrapped.js"),
 	readFile("src/JRClass/main.js"),
 	readFile("src/Fiber/main.js"),
 	readFile("src/DotNetWise/fastClass.js"),

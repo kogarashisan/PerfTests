@@ -1,11 +1,11 @@
 
-var NativeParent = function(instance_string) {
+var NativeUnwrappedParent = function(instance_string) {
 	this.counter = 0;
 	this.instance_array = [];
 	this.instance_string = instance_string;
 };
 
-NativeParent.prototype.method = function (prevent_inline) {
+NativeUnwrappedParent.prototype.method = function (prevent_inline) {
 	if (this.counter > THRESHOLD)
 		this.counter = this.counter / 2;
 	else
@@ -25,22 +25,22 @@ NativeParent.prototype.method = function (prevent_inline) {
 	}
 };
 
-var NativeChildA = function(instance_string) {
+var NativeUnwrappedChildA = function(instance_string) {
 	this.member_a = 1;
-	NativeParent.call(this, instance_string);
+	NativeUnwrappedParent.call(this, instance_string);
 };
-__extend(NativeChildA, NativeParent);
-NativeChildA.prototype.method = function() {
+__extend(NativeUnwrappedChildA, NativeUnwrappedParent);
+NativeUnwrappedChildA.prototype.method = function() {
 	this.member_a = -this.member_a;
-	NativeParent.prototype.method.call(this, false);
+	NativeUnwrappedParent.prototype.method.call(this, false);
 };
 
-var NativeChildB = function(instance_string) {
+var NativeUnwrappedChildB = function(instance_string) {
 	this.member_b = -1;
-	NativeParent.call(this, instance_string);
+	NativeUnwrappedParent.call(this, instance_string);
 };
-__extend(NativeChildB, NativeParent);
-NativeChildB.prototype.method = function() {
+__extend(NativeUnwrappedChildB, NativeUnwrappedParent);
+NativeUnwrappedChildB.prototype.method = function() {
 	this.member_b = -this.member_b;
-	NativeParent.prototype.method.call(this, false);
+	NativeUnwrappedParent.prototype.method.call(this, false);
 };
