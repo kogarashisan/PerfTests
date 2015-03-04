@@ -86,13 +86,13 @@ var TypeScriptChildB = (function (_super) {var cache_buster_0011;
 })(TypeScriptParent);
 
 
-var NativeParent = function(instance_string) {var cache_buster_0014;
+var NativeUnwrappedParent = function(instance_string) {var cache_buster_0014;
 	this.counter = 0;
 	this.instance_array = [];
 	this.instance_string = instance_string;
 };
 
-NativeParent.prototype.method = function (prevent_inline) {var cache_buster_0015;
+NativeUnwrappedParent.prototype.method = function (prevent_inline) {var cache_buster_0015;
 	if (this.counter > 99)
 		this.counter = this.counter / 2;
 	else
@@ -112,33 +112,86 @@ NativeParent.prototype.method = function (prevent_inline) {var cache_buster_0015
 	}
 };
 
-var NativeChildA = function(instance_string) {var cache_buster_0016;
+var NativeUnwrappedChildA = function(instance_string) {var cache_buster_0016;
 	this.member_a = 1;
-	NativeParent.call(this, instance_string);
+	NativeUnwrappedParent.call(this, instance_string);
 };
-__extend(NativeChildA, NativeParent);
-NativeChildA.prototype.method = function() {var cache_buster_0017;
+__extend(NativeUnwrappedChildA, NativeUnwrappedParent);
+NativeUnwrappedChildA.prototype.method = function() {var cache_buster_0017;
 	this.member_a = -this.member_a;
-	NativeParent.prototype.method.call(this, false);
+	NativeUnwrappedParent.prototype.method.call(this, false);
 };
 
-var NativeChildB = function(instance_string) {var cache_buster_0018;
+var NativeUnwrappedChildB = function(instance_string) {var cache_buster_0018;
 	this.member_b = -1;
-	NativeParent.call(this, instance_string);
+	NativeUnwrappedParent.call(this, instance_string);
 };
-__extend(NativeChildB, NativeParent);
-NativeChildB.prototype.method = function() {var cache_buster_0019;
+__extend(NativeUnwrappedChildB, NativeUnwrappedParent);
+NativeUnwrappedChildB.prototype.method = function() {var cache_buster_0019;
 	this.member_b = -this.member_b;
-	NativeParent.prototype.method.call(this, false);
+	NativeUnwrappedParent.prototype.method.call(this, false);
 };
+
+(function(global) {var cache_buster_0020;
+
+	var NativeWrappedParent = function(instance_string) {var cache_buster_0021;
+		this.counter = 0;
+		this.instance_array = [];
+		this.instance_string = instance_string;
+	};
+
+	NativeWrappedParent.prototype.method = function (prevent_inline) {var cache_buster_0022;
+		if (this.counter > 99)
+			this.counter = this.counter / 2;
+		else
+			this.counter++;
+		if (prevent_inline) {
+			var i = 0;
+			for (i = 0; i < 1; i++) dummy.method();
+			for (i = 0; i < 1; i++) dummy.method();
+			for (i = 0; i < 1; i++) dummy.method();
+			for (i = 0; i < 1; i++) dummy.method();
+			for (i = 0; i < 1; i++) dummy.method();
+			for (i = 0; i < 1; i++) dummy.method();
+			for (i = 0; i < 1; i++) dummy.method();
+			for (i = 0; i < 1; i++) dummy.method();
+			for (i = 0; i < 1; i++) dummy.method();
+			for (i = 0; i < 1; i++) dummy.method();
+		}
+	};
+
+	var NativeWrappedChildA = function(instance_string) {var cache_buster_0023;
+		this.member_a = 1;
+		NativeWrappedParent.call(this, instance_string);
+	};
+	__extend(NativeWrappedChildA, NativeWrappedParent);
+	NativeWrappedChildA.prototype.method = function() {var cache_buster_0024;
+		this.member_a = -this.member_a;
+		NativeWrappedParent.prototype.method.call(this, false);
+	};
+
+	var NativeWrappedChildB = function(instance_string) {var cache_buster_0025;
+		this.member_b = -1;
+		NativeWrappedParent.call(this, instance_string);
+	};
+	__extend(NativeWrappedChildB, NativeWrappedParent);
+	NativeWrappedChildB.prototype.method = function() {var cache_buster_0026;
+		this.member_b = -this.member_b;
+		NativeWrappedParent.prototype.method.call(this, false);
+	};
+
+	window["NativeWrappedChildA"] = NativeWrappedChildA;
+	window["NativeWrappedChildB"] = NativeWrappedChildB;
+
+})(window);
 
 var JRParent = JRClass.extend({
-	init: function(instance_string){var cache_buster_0020;
+	init: function(instance_string){var cache_buster_0027;
 		this.counter = 0;
 		this.instance_array = [];
 		this.instance_string = instance_string;
 	},
-	method: function (prevent_inline) {var cache_buster_0021;
+	method: function (prevent_inline) {var cache_buster_0028;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -160,35 +213,35 @@ var JRParent = JRClass.extend({
 });
 
 var JRChildA = JRParent.extend({
-	init: function(instance_string){var cache_buster_0022;
+	init: function(instance_string){var cache_buster_0029;
 		this.member_a = 1;
 		this._super(instance_string);
 	},
-	method: function(){var cache_buster_0023;
+	method: function(){var cache_buster_0030;
 		this.member_a = -this.member_a;
 		return this._super(false);
 	}
 });
 
 var JRChildB = JRParent.extend({
-	init: function(instance_string){var cache_buster_0024;
+	init: function(instance_string){var cache_buster_0031;
 		this.member_b = -1;
 		this._super(instance_string);
 	},
-	method: function(){var cache_buster_0025;
+	method: function(){var cache_buster_0032;
 		this.member_b = -this.member_b;
 		return this._super(false);
 	}
 });
 
-var FiberParent = Fiber.extend(function() {var cache_buster_0026;
+var FiberParent = Fiber.extend(function() {var cache_buster_0033;
 	return {
-		init: function(instance_string) {var cache_buster_0027;
+		init: function(instance_string) {var cache_buster_0034;
 			this.counter = 0;
 			this.instance_array = [];
 			this.instance_string = instance_string;
 		},
-		method: function (prevent_inline) {var cache_buster_0028;
+		method: function (prevent_inline) {var cache_buster_0035;
 			if (this.counter > 99)
 				this.counter = this.counter / 2;
 			else
@@ -210,38 +263,38 @@ var FiberParent = Fiber.extend(function() {var cache_buster_0026;
 	}
 });
 
-var FiberChildA = FiberParent.extend(function(base) {var cache_buster_0029;
+var FiberChildA = FiberParent.extend(function(base) {var cache_buster_0036;
 	return {
-		init: function (instance_string) {var cache_buster_0030;
+		init: function (instance_string) {var cache_buster_0037;
 			this.member_a = 1;
 			base.init.call(this, instance_string);
 		},
-		method: function () {var cache_buster_0031;
+		method: function () {var cache_buster_0038;
 			this.member_a = -this.member_a;
 			base.method.call(this, false);
 		}
 	}
 });
 
-var FiberChildB = FiberParent.extend(function(base) {var cache_buster_0032;
+var FiberChildB = FiberParent.extend(function(base) {var cache_buster_0039;
 	return {
-		init: function (instance_string) {var cache_buster_0033;
+		init: function (instance_string) {var cache_buster_0040;
 			this.member_b = -1;
 			base.init.call(this, instance_string);
 		},
-		method: function () {var cache_buster_0034;
+		method: function () {var cache_buster_0041;
 			this.member_b = -this.member_b;
 			base.method.call(this, false);
 		}
 	}
 });
 
-var DNW_FC_Parent = Function.define(function(instance_string) {var cache_buster_0035;
+var DNW_FC_Parent = Function.define(function(instance_string) {var cache_buster_0042;
 	this.counter = 0;
 	this.instance_array = [];
 	this.instance_string = instance_string;
 }, {
-	method: function (prevent_inline) {var cache_buster_0036;
+	method: function (prevent_inline) {var cache_buster_0043;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -262,34 +315,34 @@ var DNW_FC_Parent = Function.define(function(instance_string) {var cache_buster_
 	}
 });
 
-var DNW_FC_ChildA = DNW_FC_Parent.fastClass(function(base, baseCtor) {var cache_buster_0037;
-	this.constructor = function(instance_string) {var cache_buster_0038;
+var DNW_FC_ChildA = DNW_FC_Parent.fastClass(function(base, baseCtor) {var cache_buster_0044;
+	this.constructor = function(instance_string) {var cache_buster_0045;
 		this.member_a = 1;
 		baseCtor.call(this, instance_string);
 	};
-	this.method = function() {var cache_buster_0039;
+	this.method = function() {var cache_buster_0046;
 		this.member_a = -this.member_a;
 		base.method.call(this, false);
 	};
 });
 
-var DNW_FC_ChildB = DNW_FC_Parent.fastClass(function(base, baseCtor) {var cache_buster_0040;
-	this.constructor = function(instance_string) {var cache_buster_0041;
+var DNW_FC_ChildB = DNW_FC_Parent.fastClass(function(base, baseCtor) {var cache_buster_0047;
+	this.constructor = function(instance_string) {var cache_buster_0048;
 		this.member_b = -1;
 		baseCtor.call(this, instance_string);
 	};
-	this.method = function() {var cache_buster_0042;
+	this.method = function() {var cache_buster_0049;
 		this.member_b = -this.member_b;
 		base.method.call(this, false);
 	};
 });
 
-var DNW_IW_Parent = Function.define(function(instance_string) {var cache_buster_0043;
+var DNW_IW_Parent = Function.define(function(instance_string) {var cache_buster_0050;
 	this.counter = 0;
 	this.instance_array = [];
 	this.instance_string = instance_string;
 }, {
-	method: function (prevent_inline) {var cache_buster_0044;
+	method: function (prevent_inline) {var cache_buster_0051;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -310,26 +363,26 @@ var DNW_IW_Parent = Function.define(function(instance_string) {var cache_buster_
 	}
 });
 
-var DNW_IW_ChildA = DNW_IW_Parent.inheritWith(function(base, baseCtor) {var cache_buster_0045;
+var DNW_IW_ChildA = DNW_IW_Parent.inheritWith(function(base, baseCtor) {var cache_buster_0052;
 	return {
-		constructor: function(instance_string) {var cache_buster_0046;
+		constructor: function(instance_string) {var cache_buster_0053;
 			this.member_a = 1;
 			baseCtor.call(this, instance_string);
 		},
-		method: function() {var cache_buster_0047;
+		method: function() {var cache_buster_0054;
 			this.member_a = -this.member_a;
 			base.method.call(this, false);
 		}
 	}
 });
 
-var DNW_IW_ChildB = DNW_IW_Parent.inheritWith(function(base, baseCtor) {var cache_buster_0048;
+var DNW_IW_ChildB = DNW_IW_Parent.inheritWith(function(base, baseCtor) {var cache_buster_0055;
 	return {
-		constructor: function(instance_string) {var cache_buster_0049;
+		constructor: function(instance_string) {var cache_buster_0056;
 			this.member_b = -1;
 			baseCtor.call(this, instance_string);
 		},
-		method: function() {var cache_buster_0050;
+		method: function() {var cache_buster_0057;
 			this.member_b = -this.member_b;
 			base.method.call(this, false);
 		}
@@ -344,13 +397,13 @@ Lava.ClassManager.define(
 	instance_array: [],
 	instance_string: "",
 
-	init: function(instance_string) {var cache_buster_0051;
+	init: function(instance_string) {var cache_buster_0058;
 
 		this.instance_string = instance_string;
 
 	},
 
-	method: function (prevent_inline) {var cache_buster_0052;
+	method: function (prevent_inline) {var cache_buster_0059;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -376,10 +429,10 @@ Lava.ClassManager.define(
 {
 	Extends: "global.CMBrowserMonoParent",
 	member_a: 1,
-	init: function(instance_string) {var cache_buster_0053;
+	init: function(instance_string) {var cache_buster_0060;
 		this.CMBrowserMonoParent$init(instance_string);
 	},
-	method: function () {var cache_buster_0054;
+	method: function () {var cache_buster_0061;
 		this.member_a = -this.member_a;
 		this.CMBrowserMonoParent$method(false);
 	}
@@ -390,10 +443,10 @@ Lava.ClassManager.define(
 {
 	Extends: "global.CMBrowserMonoParent",
 	member_b: -1,
-	init: function(instance_string) {var cache_buster_0055;
+	init: function(instance_string) {var cache_buster_0062;
 		this.CMBrowserMonoParent$init(instance_string);
 	},
-	method: function () {var cache_buster_0056;
+	method: function () {var cache_buster_0063;
 		this.member_b = -this.member_b;
 		this.CMBrowserMonoParent$method(false);
 	}
@@ -407,13 +460,13 @@ Lava.ClassManager.define(
 	instance_array: [],
 	instance_string: "",
 
-	init: function(instance_string) {var cache_buster_0057;
+	init: function(instance_string) {var cache_buster_0064;
 
 		this.instance_string = instance_string;
 
 	},
 
-	method: function (prevent_inline) {var cache_buster_0058;
+	method: function (prevent_inline) {var cache_buster_0065;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -439,10 +492,10 @@ Lava.ClassManager.define(
 {
 	Extends: "global.CMBrowserMonoParent",
 	member_a: 1,
-	init: function(instance_string) {var cache_buster_0059;
+	init: function(instance_string) {var cache_buster_0066;
 		this.CMBrowserMonoParent$init(instance_string);
 	},
-	method: function () {var cache_buster_0060;
+	method: function () {var cache_buster_0067;
 		this.member_a = -this.member_a;
 		this.CMBrowserMonoParent$method(false);
 	}
@@ -453,10 +506,10 @@ Lava.ClassManager.define(
 {
 	Extends: "global.CMBrowserMonoParent",
 	member_b: -1,
-	init: function(instance_string) {var cache_buster_0061;
+	init: function(instance_string) {var cache_buster_0068;
 		this.CMBrowserMonoParent$init(instance_string);
 	},
-	method: function () {var cache_buster_0062;
+	method: function () {var cache_buster_0069;
 		this.member_b = -this.member_b;
 		this.CMBrowserMonoParent$method(false);
 	}
@@ -467,12 +520,12 @@ Lava.ClassManager.loadClasses([
 		"extends": null,
 		"implements": null,
 		references: [
-			function (instance_string) {var cache_buster_0063;
+			function (instance_string) {var cache_buster_0070;
 
 		this.instance_string = instance_string;
 
 	},
-			function (prevent_inline) {var cache_buster_0064;
+			function (prevent_inline) {var cache_buster_0071;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -492,13 +545,13 @@ Lava.ClassManager.loadClasses([
 		}
 	}
 		],
-		constructor: function() {var cache_buster_0065;
+		constructor: function() {var cache_buster_0072;
 this.counter = 0;
 this.instance_array = [];
 this.instance_string = "";
 this.init.apply(this, arguments);
 },
-		prototype_generator: function(cd,p) {var cache_buster_0066;
+		prototype_generator: function(cd,p) {var cache_buster_0073;
 	var r=cd.references,
 		s=cd.shared;
 
@@ -512,12 +565,12 @@ this.init.apply(this, arguments);
 		"extends": "global.CMServerFullrefMonoParent",
 		"implements": null,
 		references: [
-			function (instance_string) {var cache_buster_0067;
+			function (instance_string) {var cache_buster_0074;
 
 		this.instance_string = instance_string;
 
 	},
-			function (prevent_inline) {var cache_buster_0068;
+			function (prevent_inline) {var cache_buster_0075;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -536,22 +589,22 @@ this.init.apply(this, arguments);
 			for (i = 0; i < 1; i++) dummy.method();
 		}
 	},
-			function (instance_string) {var cache_buster_0069;
+			function (instance_string) {var cache_buster_0076;
 		this.CMServerFullrefMonoParent$init(instance_string);
 	},
-			function () {var cache_buster_0070;
+			function () {var cache_buster_0077;
 		this.member_a = -this.member_a;
 		this.CMServerFullrefMonoParent$method(false);
 	}
 		],
-		constructor: function() {var cache_buster_0071;
+		constructor: function() {var cache_buster_0078;
 this.member_a = 1;
 this.counter = 0;
 this.instance_array = [];
 this.instance_string = "";
 this.init.apply(this, arguments);
 },
-		prototype_generator: function(cd,p) {var cache_buster_0072;
+		prototype_generator: function(cd,p) {var cache_buster_0079;
 	var r=cd.references,
 		s=cd.shared;
 
@@ -567,12 +620,12 @@ this.init.apply(this, arguments);
 		"extends": "global.CMServerFullrefMonoParent",
 		"implements": null,
 		references: [
-			function (instance_string) {var cache_buster_0073;
+			function (instance_string) {var cache_buster_0080;
 
 		this.instance_string = instance_string;
 
 	},
-			function (prevent_inline) {var cache_buster_0074;
+			function (prevent_inline) {var cache_buster_0081;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -591,22 +644,22 @@ this.init.apply(this, arguments);
 			for (i = 0; i < 1; i++) dummy.method();
 		}
 	},
-			function (instance_string) {var cache_buster_0075;
+			function (instance_string) {var cache_buster_0082;
 		this.CMServerFullrefMonoParent$init(instance_string);
 	},
-			function () {var cache_buster_0076;
+			function () {var cache_buster_0083;
 		this.member_b = -this.member_b;
 		this.CMServerFullrefMonoParent$method(false);
 	}
 		],
-		constructor: function() {var cache_buster_0077;
+		constructor: function() {var cache_buster_0084;
 this.member_b = -1;
 this.counter = 0;
 this.instance_array = [];
 this.instance_string = "";
 this.init.apply(this, arguments);
 },
-		prototype_generator: function(cd,p) {var cache_buster_0078;
+		prototype_generator: function(cd,p) {var cache_buster_0085;
 	var r=cd.references,
 		s=cd.shared;
 
@@ -621,13 +674,13 @@ this.init.apply(this, arguments);
 		path: "global.CMServerPartialrefMonoParent",
 		"extends": null,
 		"implements": null,
-		constructor: function() {var cache_buster_0079;
+		constructor: function() {var cache_buster_0086;
 this.counter = 0;
 this.instance_array = [];
 this.instance_string = "";
 this.init.apply(this, arguments);
 },
-		prototype_generator: function(cd,p) {var cache_buster_0080;
+		prototype_generator: function(cd,p) {var cache_buster_0087;
 	var r=cd.references,
 		s=cd.shared;
 
@@ -636,12 +689,12 @@ this.init.apply(this, arguments);
 
 },
 		own_references: [
-			function (instance_string) {var cache_buster_0081;
+			function (instance_string) {var cache_buster_0088;
 
 		this.instance_string = instance_string;
 
 	},
-			function (prevent_inline) {var cache_buster_0082;
+			function (prevent_inline) {var cache_buster_0089;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -666,14 +719,14 @@ this.init.apply(this, arguments);
 		path: "global.CMServerPartialrefMonoChildA",
 		"extends": "global.CMServerPartialrefMonoParent",
 		"implements": null,
-		constructor: function() {var cache_buster_0083;
+		constructor: function() {var cache_buster_0090;
 this.member_a = 1;
 this.counter = 0;
 this.instance_array = [];
 this.instance_string = "";
 this.init.apply(this, arguments);
 },
-		prototype_generator: function(cd,p) {var cache_buster_0084;
+		prototype_generator: function(cd,p) {var cache_buster_0091;
 	var r=cd.references,
 		s=cd.shared;
 
@@ -684,10 +737,10 @@ this.init.apply(this, arguments);
 
 },
 		own_references: [
-			function (instance_string) {var cache_buster_0085;
+			function (instance_string) {var cache_buster_0092;
 		this.CMServerPartialrefMonoParent$init(instance_string);
 	},
-			function () {var cache_buster_0086;
+			function () {var cache_buster_0093;
 		this.member_a = -this.member_a;
 		this.CMServerPartialrefMonoParent$method(false);
 	}
@@ -697,14 +750,14 @@ this.init.apply(this, arguments);
 		path: "global.CMServerPartialrefMonoChildB",
 		"extends": "global.CMServerPartialrefMonoParent",
 		"implements": null,
-		constructor: function() {var cache_buster_0087;
+		constructor: function() {var cache_buster_0094;
 this.member_b = -1;
 this.counter = 0;
 this.instance_array = [];
 this.instance_string = "";
 this.init.apply(this, arguments);
 },
-		prototype_generator: function(cd,p) {var cache_buster_0088;
+		prototype_generator: function(cd,p) {var cache_buster_0095;
 	var r=cd.references,
 		s=cd.shared;
 
@@ -715,10 +768,10 @@ this.init.apply(this, arguments);
 
 },
 		own_references: [
-			function (instance_string) {var cache_buster_0089;
+			function (instance_string) {var cache_buster_0096;
 		this.CMServerPartialrefMonoParent$init(instance_string);
 	},
-			function () {var cache_buster_0090;
+			function () {var cache_buster_0097;
 		this.member_b = -this.member_b;
 		this.CMServerPartialrefMonoParent$method(false);
 	}
@@ -728,11 +781,11 @@ this.init.apply(this, arguments);
 		path: "global.CMServerPartialrefPolyParent",
 		"extends": null,
 		"implements": null,
-		constructor: function() {var cache_buster_0091;
+		constructor: function() {var cache_buster_0098;
 this.instance_array = [];
 this.init.apply(this, arguments);
 },
-		prototype_generator: function(cd,p) {var cache_buster_0092;
+		prototype_generator: function(cd,p) {var cache_buster_0099;
 	var r=cd.references,
 		s=cd.shared;
 
@@ -743,12 +796,12 @@ this.init.apply(this, arguments);
 
 },
 		own_references: [
-			function (instance_string) {var cache_buster_0093;
+			function (instance_string) {var cache_buster_0100;
 
 		this.instance_string = instance_string;
 
 	},
-			function (prevent_inline) {var cache_buster_0094;
+			function (prevent_inline) {var cache_buster_0101;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -773,11 +826,11 @@ this.init.apply(this, arguments);
 		path: "global.CMServerPartialrefPolyChildA",
 		"extends": "global.CMServerPartialrefPolyParent",
 		"implements": null,
-		constructor: function() {var cache_buster_0095;
+		constructor: function() {var cache_buster_0102;
 this.instance_array = [];
 this.init.apply(this, arguments);
 },
-		prototype_generator: function(cd,p) {var cache_buster_0096;
+		prototype_generator: function(cd,p) {var cache_buster_0103;
 	var r=cd.references,
 		s=cd.shared;
 
@@ -791,10 +844,10 @@ this.init.apply(this, arguments);
 
 },
 		own_references: [
-			function (instance_string) {var cache_buster_0097;
+			function (instance_string) {var cache_buster_0104;
 		this.CMServerPartialrefPolyParent$init(instance_string);
 	},
-			function () {var cache_buster_0098;
+			function () {var cache_buster_0105;
 		this.member_a = -this.member_a;
 		this.CMServerPartialrefPolyParent$method(false);
 	}
@@ -804,11 +857,11 @@ this.init.apply(this, arguments);
 		path: "global.CMServerPartialrefPolyChildB",
 		"extends": "global.CMServerPartialrefPolyParent",
 		"implements": null,
-		constructor: function() {var cache_buster_0099;
+		constructor: function() {var cache_buster_0106;
 this.instance_array = [];
 this.init.apply(this, arguments);
 },
-		prototype_generator: function(cd,p) {var cache_buster_0100;
+		prototype_generator: function(cd,p) {var cache_buster_0107;
 	var r=cd.references,
 		s=cd.shared;
 
@@ -822,10 +875,10 @@ this.init.apply(this, arguments);
 
 },
 		own_references: [
-			function (instance_string) {var cache_buster_0101;
+			function (instance_string) {var cache_buster_0108;
 		this.CMServerPartialrefPolyParent$init(instance_string);
 	},
-			function () {var cache_buster_0102;
+			function () {var cache_buster_0109;
 		this.member_b = -this.member_b;
 		this.CMServerPartialrefPolyParent$method(false);
 	}
@@ -833,13 +886,13 @@ this.init.apply(this, arguments);
 	}
 ]);
 
-var KlassParent = klass(function (instance_string) {var cache_buster_0103;
+var KlassParent = klass(function (instance_string) {var cache_buster_0110;
 	this.counter = 0;
 	this.instance_array = [];
 	this.instance_string = instance_string;
 })
 .methods({
-	method: function (prevent_inline) {var cache_buster_0104;
+	method: function (prevent_inline) {var cache_buster_0111;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -860,33 +913,33 @@ var KlassParent = klass(function (instance_string) {var cache_buster_0103;
 	}
 });
 
-var KlassChildA = KlassParent.extend(function (name) {var cache_buster_0105;
+var KlassChildA = KlassParent.extend(function (name) {var cache_buster_0112;
 	this.member_a = 1;
 })
 .methods({
-	method: function() {var cache_buster_0106;
+	method: function() {var cache_buster_0113;
 		this.member_a = -this.member_a;
 		this.supr(false);
 	}
 });
 
-var KlassChildB = KlassParent.extend(function (name) {var cache_buster_0107;
+var KlassChildB = KlassParent.extend(function (name) {var cache_buster_0114;
 	this.member_b = 1;
 })
 .methods({
-	method: function() {var cache_buster_0108;
+	method: function() {var cache_buster_0115;
 		this.member_b = -this.member_b;
 		this.supr(false);
 	}
 });
 
 var AugmentClassicalParent = augment.defclass({
-	constructor: function (instance_string) {var cache_buster_0109;
+	constructor: function (instance_string) {var cache_buster_0116;
 		this.counter = 0;
 		this.instance_array = [];
 		this.instance_string = instance_string;
 	},
-	method: function (prevent_inline) {var cache_buster_0110;
+	method: function (prevent_inline) {var cache_buster_0117;
 		if (this.counter > 99)
 			this.counter = this.counter / 2;
 		else
@@ -907,25 +960,25 @@ var AugmentClassicalParent = augment.defclass({
 	}
 });
 
-var AugmentClassicalChildA = augment(AugmentClassicalParent, function (uber) {var cache_buster_0111;
-	this.constructor = function (instance_string) {var cache_buster_0112;
+var AugmentClassicalChildA = augment(AugmentClassicalParent, function (uber) {var cache_buster_0118;
+	this.constructor = function (instance_string) {var cache_buster_0119;
 		this.member_a = 1;
 		uber.constructor.call(this, instance_string);
 	};
 
-	this.method = function() {var cache_buster_0113;
+	this.method = function() {var cache_buster_0120;
 		this.member_a = -this.member_a;
 		uber.method.call(this, false);
 	};
 });
 
-var AugmentClassicalChildB = augment(AugmentClassicalParent, function (uber) {var cache_buster_0114;
-	this.constructor = function (instance_string) {var cache_buster_0115;
+var AugmentClassicalChildB = augment(AugmentClassicalParent, function (uber) {var cache_buster_0121;
+	this.constructor = function (instance_string) {var cache_buster_0122;
 		this.member_b = -1;
 		uber.constructor.call(this, instance_string);
 	};
 
-	this.method = function() {var cache_buster_0116;
+	this.method = function() {var cache_buster_0123;
 		this.member_b = -this.member_b;
 		uber.method.call(this, false);
 	};
