@@ -73,7 +73,8 @@ var result = [
 	exportClassManagerClasses(),
 	readFile("src/klass/common_way.js"),
 	readFile("src/augment/classical_inheritance.js")
-	//readFile("src/fresheneesz_proto/main.js"), // it's just another one from over 100 class systems. Here by accident.
+	//readFile("src/augment/prototypal_inheritance.js") // it's slower and uglier than classical_inheritance.js, no reason to include it
+	//readFile("src/fresheneesz_proto/main.js") // it's just another one from over 100 class systems. Here by accident.
 ];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

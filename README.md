@@ -3,14 +3,14 @@
 Accurate tests of JavaScript class inheritance models, which model real-world application behaviour 
 with aim to providing better accuracy.
 
-Only the fastest class systems are tested. For example: speed of Prototype.js classes is about 1% of native,
+Only the fastest and most popular class systems are tested. For example: speed of Prototype.js classes is about 1% of native,
 so there is no reason to include it. The same applies to MooTools. Ext.JS is not included, cause it affects results of
-other tests (from the words of DotNetWise author).
+other tests (from the words of other authors).
 
 ##Where to see the results?
 
-- Overridden method calls: http://jsperf.com/js-inheritance-method-calls/2
-- Object construction: http://jsperf.com/js-inheritance-object-construction
+- Overridden method calls: http://jsperf.com/js-inheritance-method-calls/7
+- Object construction: http://jsperf.com/js-inheritance-object-construction/3
 
 ##Comparison to other test suites
 
@@ -30,11 +30,6 @@ If the second time some test runs slower, and result is stable - then it's wrong
 cause they affect each other.
 - benchmark shows deviation from normal result. If this number is too high, like "+/- 27.98%" -
 this may also be a sign, that the test is wrong. 
-
-Notes: 
-- although the "Native" example from this test suite has high deviation in Chrome, it's considered right by the author.
-- these tests construct a pair of objects before each loop with method calls.
-This introduces a small error into the test results (less than 1%), which can be neglected.
 
 <i>I do not claim absolute correctness of these tests, they are just more relevant than most of others.</i> 
 
@@ -98,6 +93,31 @@ This is accomplished by appending unique variable declaration to the beginning o
 
 - Create polymorphism: each individual test creates instances of <i>several different</i> child classes, that call same 
 <i>overridden</i> parent's method. This shows issues with parent's method becoming polymorphic.
+
+##Explanation of Native
+
+Native model comes in two flavours:
+- unwrapped. Classes are defined in the root of `window` object
+- wrapped. The same classes, but wrapped into a closure and exported to `window`
+
+You should notice the difference in method call speed between `Native (wrapped)` and `Native (unwrapped)` test cases.
+When classes are in the window root - Chrome often applies some kind of optimization, 
+which boosts the speed of "Native (unwrapped)" test case twice. It happens time to time, and result is not consistent.
+To make this optimization happen, your classes must strictly follow the pattern from `src/Native/unwrapped.js`.
+At current moment this optimization seems to be disabled by wrapping classes into a closure.
+
+<b>In real world most of your code will be wrapped into a closure:</b> 
+for better compression, isolation, and for module loader compatibility.
+And inside Node.js environment each module is automatically wrapped in a closure.
+
+So, to summarize this: you should use `Native (wrapped)` test case as reference - 
+it's the real speed of the Native model. If you put your classes in window root - then you MAY get the speed of
+`Native (unwrapped)`, but... it does not always happen. Speed boost of unwrapped model may also mean, 
+that there is an error in my test case.
+
+##Changelog
+
+See [CHANGELOG.md](https://github.com/kogarashisan/PerfTests/blob/gh-pages/CHANGELOG.md)
 
 ##P.S.
 
