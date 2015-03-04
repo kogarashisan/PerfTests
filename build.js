@@ -61,8 +61,7 @@ var result = [
 	"to see the actual source and get link to the latest official test version on jsperf.\n*/\n\n",
 	readFile("src/top.js"),
 	readFile("src/TypeScript/result.js"),
-	// it's too slow, just 1% of native. No reason to include it with the others.
-	//readFile("src/Prototype/main.js"),
+	//readFile("src/Prototype/main.js"), // it's too slow, like 1% of native. No reason to include it with the others.
 	readFile("src/Native/main.js"),
 	readFile("src/JRClass/main.js"),
 	readFile("src/Fiber/main.js"),
@@ -70,7 +69,10 @@ var result = [
 	readFile("src/DotNetWise/inheritWith.js"),
 	readFile("src/ClassManager/browser_mono.js"),
 	readFile("src/ClassManager/browser_poly.js"),
-	exportClassManagerClasses()
+	exportClassManagerClasses(),
+	readFile("src/klass/common_way.js"),
+	readFile("src/augment/classical_inheritance.js")
+	//readFile("src/fresheneesz_proto/main.js"), // it's just another one from over 100 class systems. Here by accident.
 ];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +102,9 @@ result = [
 	readFile("dependencies/ptclass.js"),
 	readFile("node_modules/fast-class/FastClass.js"),
 	readFile("node_modules/fiber/src/fiber.js"),
-	readFile("node_modules/lava-class-manager/lib/class_manager.js")
+	readFile("node_modules/lava-class-manager/lib/class_manager.js"),
+	readFile("dependencies/augment.js"),
+	readFile("dependencies/klass.js")
 ];
 
 fs.writeFileSync("export/inheritance-dependencies.js", result.join("\n"));

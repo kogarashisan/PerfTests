@@ -36,6 +36,8 @@ Notes:
 - these tests construct a pair of objects before each loop with method calls.
 This introduces a small error into the test results (less than 1%), which can be neglected.
 
+<i>I do not claim absolute correctness of these tests, they are just more relevant than most of others.</i> 
+
 ##Another bad example: how not to write tests
 
 Let's test speed of counter increment. Preparation code:
@@ -66,8 +68,6 @@ what is polymorphism in property accessors, scope internals and many other thing
 If you want to learn more, then I recommend you this site for reference: [mrale.ph](http://mrale.ph/) 
 (it's not mine, but currently it's one of the best sources about JavaScript engine internals).
 
-<i>I do not claim absolute correctness of these tests, they are just more relevant than average.</i> 
-
 ##Techniques used
 
 These tests try to provide most accurate results, although it's not guaranteed that they are 100% correct.
@@ -96,7 +96,7 @@ This is not guaranteed :)
 This is accomplished by appending unique variable declaration to the beginning of each method in the test suite
 (like `var cache_buster_0012;`).
 
-- Create polymorphism: each individual test creates instances of <i>two different</i> child classes, that call same 
+- Create polymorphism: each individual test creates instances of <i>several different</i> child classes, that call same 
 <i>overridden</i> parent's method. This shows issues with parent's method becoming polymorphic.
 
 ##P.S.
