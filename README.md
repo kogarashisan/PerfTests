@@ -1,3 +1,6 @@
+<i>Update 09.03.15: "Native Unwrapped" and ClassManager "polymorphic" and "full export" 
+cases need to be removed as irrelevant. Will do that in spare time.</i>
+
 # JavaScript class inheritance performance tests
 
 Accurate tests of JavaScript class inheritance models, which model real-world application behaviour 
