@@ -27,12 +27,11 @@ Authors of such tests can manipulate your opinion by adjusting loop counter numb
 Such bad examples include tests of Fiber.js from LinkedIn and DotNetWise - they do just that.
 
 What else to watch for:
-- open the page with tests in a new window (important!) and run all tests twice in a row. 
+- open the page with tests in a new window (important!) and run a test twice in a row.
 If the second time some test runs slower, and result is stable - then it's wrong.
 - if result changes depending on order, in which you run tests - they are wrong,
 cause they affect each other.
-- benchmark shows deviation from normal result. If this number is too high, like "+/- 27.98%" -
-this may also be a sign, that the test is wrong. 
+- if a test case shows high variance, like "+/- 27.98%" - this may also be a sign, that the test is wrong.
 
 <i>I do not claim absolute correctness of these tests, they are just more relevant than most of others.</i> 
 
